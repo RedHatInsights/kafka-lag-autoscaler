@@ -63,7 +63,7 @@ def get_num_pods():
             _reraise=True,
         )
     except ErrorReturnCode:
-        log.exception("Error collecting pod count")
+        log.error("Error collecting pod count")
         pods = ""
 
     num_pods = len(pods.split())
@@ -74,8 +74,8 @@ def get_num_pods():
 def get_lag():
     try:
         metrics = requests.get(METRICS_URL).content.decode("utf-8")
-    except IOError:
-        log.exception("Failed to query metrics URL")
+    except IOError as err:
+        log.error("Failed to query metrics URL: %s", err)
         return None
 
     total_lag = 0
