@@ -73,7 +73,7 @@ def get_num_pods():
 
 def get_lag():
     try:
-        metrics = requests.get(METRICS_URL).content
+        metrics = requests.get(METRICS_URL).content.decode("utf-8")
     except IOError:
         log.exception("Failed to query metrics URL")
         return None
@@ -116,6 +116,7 @@ def scale_up(pod_count):
 
 if __name__ == "__main__":
     logging.basicConfig(level=getattr(logging, LOG_LEVEL))
+    logging.getLogger("sh").setLevel(logging.CRITICAL)
     while True:
         current_num_pods = get_num_pods()
         total_lag = get_lag()
