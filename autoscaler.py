@@ -93,7 +93,7 @@ def get_lag():
 
 def scale_down(pod_count):
     if pod_count <= MIN_PODS:
-        log.info("Pod count (%d) is already at or below min pods (%d)", num_pods, MIN_PODS)
+        log.info("Current pod count is already at or below min pods (%d)", MIN_PODS)
     else:
         oc(
             "scale",
@@ -105,7 +105,7 @@ def scale_down(pod_count):
 
 def scale_up(pod_count):
     if pod_count >= MAX_PODS:
-        log.info("Pod count (%d) is already at or above max pods (%d)", num_pods, MAX_PODS)
+        log.info("Current pod count is already at or above max pods (%d)" MAX_PODS)
     else:
         oc(
             "scale",
