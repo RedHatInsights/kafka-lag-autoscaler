@@ -87,7 +87,7 @@ def get_lag():
                 log.debug("Adding value from sample: ", sample)
                 total_lag += value
 
-    log.info("Total lag for group '%s': %d", total_lag, KAFKA_GROUP)
+    log.info("Total lag for group '%s': %f", KAFKA_GROUP, total_lag)
 
 
 def scale_down(pod_count):
