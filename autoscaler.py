@@ -105,7 +105,7 @@ def scale_down(pod_count):
 
 def scale_up(pod_count):
     if pod_count >= MAX_PODS:
-        log.info("Current pod count is already at or above max pods (%d)" MAX_PODS)
+        log.info("Current pod count is already at or above max pods (%d)", MAX_PODS)
     else:
         oc(
             "scale",
