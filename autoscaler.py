@@ -24,10 +24,10 @@ if not NAMESPACE:
 DC_NAME = os.environ["DC_NAME"]
 METRICS_URL = os.environ["METRICS_URL"]
 KAFKA_GROUP = os.environ["KAFKA_GROUP"]
-INTERVAL = os.environ.get("METRIC_PULL_INTERVAL_SECONDS", 60)
-THRESHOLD = os.environ.get("THRESHOLD", 0.7)
-MIN_PODS = os.environ.get("MIN_PODS", 1)
-MAX_PODS = os.environ.get("MAX_PODS", 10)
+INTERVAL = int(os.environ.get("METRIC_PULL_INTERVAL_SECONDS", 60))
+THRESHOLD = float(os.environ.get("THRESHOLD", 0.7))
+MIN_PODS = int(os.environ.get("MIN_PODS", 1))
+MAX_PODS = int(os.environ.get("MAX_PODS", 10))
 LOG_LEVEL = os.environ.get("LOG_LEVEL", "INFO").upper()
 
 CA_CERT = os.environ.get("CA_CERT", False)
