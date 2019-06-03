@@ -88,6 +88,7 @@ def get_lag():
                 total_lag += value
 
     log.info("Total lag for group '%s': %f", KAFKA_GROUP, total_lag)
+    return total_lag
 
 
 def scale_down(pod_count):
@@ -132,4 +133,5 @@ if __name__ == "__main__":
         else:
             log.error("Couldn't satisfy any if statements, how'd we get here?")
 
+        log.info("Checking again in %d sec", INTERVAL)
         time.sleep(INTERVAL)
