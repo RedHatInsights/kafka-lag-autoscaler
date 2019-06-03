@@ -119,13 +119,13 @@ if __name__ == "__main__":
     while True:
         current_num_pods = get_num_pods()
         total_lag = get_lag()
-        if num_pods is None or total_lag is None:
+        if current_num_pods is None or total_lag is None:
             log.error("Error collecting pod count or metrics, doing nothing for now...")
 
-        elif total_lag / float(num_pods) > THRESHOLD:
+        elif total_lag / float(current_num_pods) > THRESHOLD:
             scale_up(current_num_pods)
 
-        elif total_lag / float(num_pods) <= THRESHOLD:
+        elif total_lag / float(current_num_pods) <= THRESHOLD:
             scale_down(current_num_pods)
 
         else:
