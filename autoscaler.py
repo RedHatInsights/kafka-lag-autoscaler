@@ -48,6 +48,7 @@ def get_num_pods():
             "-o",
             "jsonpath={ .status.latestVersion }",
             _exit_on_err=False,
+            _reraise=True,
         )
         pods = oc(
             "-n",
@@ -59,6 +60,7 @@ def get_num_pods():
             "-o",
             "jsonpath={ .items[*].metadata.name }",
             _exit_on_err=False,
+            _reraise=True,
         )
     except ErrorReturnCode:
         log.exception("Error collecting pod count")
