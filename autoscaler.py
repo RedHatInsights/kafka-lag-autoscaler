@@ -12,7 +12,7 @@ from sh import ErrorReturnCode
 
 log = logging.getLogger(__name__)
 
-NAMESPACE = os.environ.get("NAMESPACE")
+NAMESPACE = os.environ.get("NAMESPACE")  # namespace our deployment runs in
 if not NAMESPACE:
     try:
         with open("/var/run/secrets/kubernetes.io/serviceaccount/namespace", "r") as f:
@@ -21,13 +21,13 @@ if not NAMESPACE:
         log.error("NAMESPACE not defined, and unable to read namespace file!")
         raise
 
-DC_NAME = os.environ["DC_NAME"]
-METRICS_URL = os.environ["METRICS_URL"]
-KAFKA_GROUP = os.environ["KAFKA_GROUP"]
-INTERVAL = int(os.environ.get("METRIC_PULL_INTERVAL_SECONDS", 60))
-THRESHOLD = float(os.environ.get("THRESHOLD", 0.7))
-MIN_PODS = int(os.environ.get("MIN_PODS", 1))
-MAX_PODS = int(os.environ.get("MAX_PODS", 10))
+DC_NAME = os.environ["DC_NAME"]  # name of deployment config we are scaling up/down
+METRICS_URL = os.environ["METRICS_URL"]  # kafka prometheus exporter metrics URL
+KAFKA_GROUP = os.environ["KAFKA_GROUP"]  # kafka consumer group to monitor
+INTERVAL = int(os.environ.get("INTERVAL", 60))  # metric pull interval (seconds)
+THRESHOLD = float(os.environ.get("THRESHOLD", 10))  # lag per pod
+MIN_PODS = int(os.environ.get("MIN_PODS", 1))  # min pods to scale our deployment to
+MAX_PODS = int(os.environ.get("MAX_PODS", 10))  # max pods to scale our deployment to
 LOG_LEVEL = os.environ.get("LOG_LEVEL", "INFO").upper()
 
 CA_CERT = os.environ.get("CA_CERT", False)

@@ -29,7 +29,7 @@ parameters:
 - name: INTERVAL
   value: "60"
 - name: THRESHOLD
-  value: "0.7"
+  value: "10"
 - name: MIN_PODS
   value: "1"
 - name: MAX_PODS
